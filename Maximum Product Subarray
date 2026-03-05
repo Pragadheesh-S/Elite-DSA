@@ -1,0 +1,24 @@
+class Solution {
+    int maxProduct(int[] arr) {
+        int n=arr.length;
+        int sf=1;int pr=1;
+        int mp=arr[0];
+       for(int i=0;i<n;i++)
+       {
+           pr*=arr[i];
+           sf*=arr[n-i-1];
+            int mv=Math.max(pr,sf);
+           mp=Math.max(mp,mv);
+           if(pr==0)
+           {
+               pr=1;
+           }
+           if(sf==0)
+           {
+               sf=1;
+           }
+          
+       }
+        return mp;
+    }
+}
