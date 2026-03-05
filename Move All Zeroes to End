@@ -1,17 +1,17 @@
 class Solution {
     void pushZerosToEnd(int[] arr) {
-        
-        int temp[]=new int[arr.length];
-        int ind=0;
-        for(int i:arr){
-            if(i!=0)temp[ind++]=i;
-            
-        }
-        while(ind!=arr.length){
-            temp[ind++]=0;
-        }
-        for(int i=0;i<temp.length;i++){
-            arr[i]=temp[i];
+        // code here
+        int n=arr.length;
+        int in=0;
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i]!=0)
+             {
+                 int t=arr[in];
+                 arr[in]=arr[i];
+                 arr[i]=t;
+                 in++;
+             }   
         }
     }
 }
