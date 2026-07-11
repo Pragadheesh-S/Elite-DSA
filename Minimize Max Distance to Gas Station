@@ -1,0 +1,38 @@
+class Solution {
+
+    private int isval(int[] arr, double t) {
+        int count = 0;
+
+        for (int i = 1; i < arr.length; i++) {
+            int numberInBetween = (int)((arr[i] - arr[i - 1]) / t);
+            count += numberInBetween;
+        }
+
+        return count;
+    }
+
+    public double minMaxDist(int[] arr, int k) {
+        int n = arr.length;
+
+        double st = 0;
+        double ed = 0;
+
+        for (int i = 1; i < n; i++) {
+            ed = Math.max(ed, arr[i] - arr[i - 1]);
+        }
+
+        double diff = 1e-6;
+
+        while (ed - st > diff) {
+            double m = (st + ed) / 2;
+
+            if (isval(arr, m) <= k) {
+                ed = m;
+            } else {
+                st = m;
+            }
+        }
+
+        return ed;
+    }
+}
