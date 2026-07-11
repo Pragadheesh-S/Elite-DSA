@@ -1,0 +1,54 @@
+class Solution {
+     private boolean isval(int[] arr,int k,int t)
+    {
+        int c=1;
+        int s=0;
+        for(int i=0;i<arr.length;i++)
+        {
+            if(s+arr[i] >t)
+            {
+              s=arr[i];
+              c++;
+            }
+            else
+            {
+                s+=arr[i];
+            }
+        }
+        return c<=k;
+    }
+    public int leastWeightCapacity(ArrayList<Integer> ar, int d) {
+        // code here
+        
+        int n=ar.size();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++)
+        {
+            arr[i]=ar.get(i);
+        }
+        
+        int st=0;
+        int ed=0;
+        for(int i=0;i<n;i++)
+        {
+            if(st<arr[i]) st=arr[i];
+            ed+=arr[i];
+        }
+        int ans =0;
+    while(st<=ed)
+    {
+        int md=(st+ed)/2;
+        if(isval(arr,d,md))
+        {
+          ans=md;
+          ed=md-1;
+        }
+        else
+        {
+          st=md+1;
+        }
+    }
+    return ans;
+        
+    }
+}
