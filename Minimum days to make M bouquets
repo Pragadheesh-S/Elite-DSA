@@ -1,0 +1,52 @@
+class Solution { 
+    private boolean isval(int[] arr,int m,int k,int t)
+    {
+        int c=0;
+        int bc=0;
+        for(int i=0;i<arr.length;i++)
+        {
+            if(arr[i]<=t)
+            {c++;
+            }
+            else
+            {
+                c=0;
+            }
+            if(c==k)
+            {
+                bc++;
+                c=0;
+            }
+            
+        }
+        return bc>=m;
+    }
+   
+    
+    public int minDaysBloom(int[] arr, int k, int m) {
+      
+        int n=arr.length;
+        if ((long)m * k > arr.length) return -1;
+        int st=1;
+        int ed=Integer.MIN_VALUE;
+        for(int i=0;i<n;i++)
+        {
+            if(ed<arr[i]) ed=arr[i];
+        }
+        int ans =0;
+    while(st<=ed)
+    {
+        int md=(st+ed)/2;
+        if(isval(arr,m,k,md))
+        {
+          ans=md;
+          ed=md-1;
+        }
+        else
+        {
+          st=md+1;
+        }
+    }
+    return ans;
+    }
+}
