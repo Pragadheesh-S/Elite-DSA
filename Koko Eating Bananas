@@ -1,0 +1,36 @@
+class Solution {
+    private int isval(int[] arr,int t)
+    {
+        int c=0;
+        for(int i=0;i<arr.length;i++)
+        {
+            c +=(arr[i]+t-1)/t;
+        }
+        return c;
+    }
+    public int kokoEat(int[] arr, int k) {
+        // code here
+        int n=arr.length;
+        int st=1;
+        int ed=Integer.MIN_VALUE;
+        for(int i=0;i<n;i++)
+        {
+            if(ed<arr[i]) ed=arr[i];
+        }
+        int ans =0;
+    while(st<=ed)
+    {
+        int m=(st+ed)/2;
+        if(isval(arr,m) <=k)
+        {
+          ans=m;
+          ed=m-1;
+        }
+        else
+        {
+          st=m+1;
+        }
+    }
+    return ans;
+    }
+}
