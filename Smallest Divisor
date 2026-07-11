@@ -1,0 +1,37 @@
+class Solution {
+     private boolean isval(int[] arr,int k,int t)
+    {
+        int c=0;
+        int bc=0;int sum=0;
+        for(int i=0;i<arr.length;i++)
+        {
+            sum+=(arr[i]+t-1)/t;
+        }
+        return sum<=k;
+    }
+    int smallestDivisor(int[] arr, int k) {
+        // Code here
+        int n=arr.length;
+        int st=1;
+        int ed=Integer.MIN_VALUE;
+        for(int i=0;i<n;i++)
+        {
+            if(ed<arr[i]) ed=arr[i];
+        }
+        int ans =0;
+    while(st<=ed)
+    {
+        int md=(st+ed)/2;
+        if(isval(arr,k,md))
+        {
+          ans=md;
+          ed=md-1;
+        }
+        else
+        {
+          st=md+1;
+        }
+    }
+    return ans;
+    }
+}
