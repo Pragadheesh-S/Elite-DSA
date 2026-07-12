@@ -1,0 +1,36 @@
+/*
+class Node {
+    int data;
+    Node next;
+
+    Node(int x)
+    {
+        data = x;
+        next = null;
+    }
+};
+*/
+
+class Solution {
+    public int cycleStart(Node head) {
+        // code here
+        Node st=head;
+        Node ft=head;
+        while(st!=null && ft !=null && ft.next !=null)
+        {
+            st=st.next;
+            ft=ft.next.next;
+            if(st==ft)
+            {
+                st=head;
+                while(st!=ft)
+                {
+                 st=st.next;
+                 ft=ft.next;
+                }
+                return st.data;
+            }
+        }
+        return -1;
+    }
+}
