@@ -1,0 +1,20 @@
+class Solution {
+    public String maxOdd(String s) {
+        // code here
+        int n=s.length();
+        //StringBuilder sb=new StringBuilder();
+        
+          int li=-1;
+          for(int i=n-1;i>=0;i--)
+          {
+            int lv=s.charAt(i)-'0';
+            if(lv%2 !=0)
+            {
+            li=i;
+            break;
+            }
+          }
+          if(li==-1) return "";
+          return s.substring(0,li+1);
+    }
+}
