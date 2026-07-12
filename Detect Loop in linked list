@@ -1,0 +1,27 @@
+/*
+class Node {
+    int data;
+    Node next;
+
+    Node(int x) {
+        data = x;
+        next = null;
+    }
+}
+*/
+
+class Solution {
+    public boolean detectLoop(Node head) {
+        // code here
+        Node st=head;
+        Node ft=head;
+        while(st!=null && ft !=null && ft.next !=null)
+        {
+            st=st.next;
+            ft=ft.next.next;
+            if(st==ft) return true;
+        }
+        return false;
+    }
+    
+}
