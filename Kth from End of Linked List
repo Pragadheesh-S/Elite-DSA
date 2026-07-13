@@ -1,0 +1,31 @@
+/* Node Structure
+class Node {
+    int data;
+    Node next;
+    Node(int x) {
+        data = x;
+        next = null;
+    }
+} */
+
+class Solution {
+    public int getKthFromLast(Node head, int k) {
+        // code here
+        Node sl=head;
+        Node ft=head;
+        
+        for(int i=0;i<k;i++)
+        {
+            if (ft == null) return -1;
+            ft=ft.next;
+        }
+        while(ft!=null)
+        {
+            sl=sl.next;
+            ft=ft.next;
+        }
+        int v=sl.data;
+        
+        return v;
+    }
+}
