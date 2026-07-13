@@ -1,0 +1,50 @@
+/*
+class Node {
+    int data;
+    Node next;
+
+    Node(int d) {
+        data = d;
+        next = null;
+    }
+}*/
+
+class Solution {
+    private Node rev(Node head)
+    {
+        Node pre=null;
+        Node cur=head;
+        
+        while(cur!=null)
+        {
+            Node tmp=cur.next;
+            cur.next=pre;
+            pre=cur;
+            cur=tmp;
+        }
+        return pre;
+        
+    }
+    public boolean isPalindrome(Node head) {
+        // code here
+        Node sl=head;
+        Node ft=head;
+        while(ft!=null && ft.next !=null)
+        {
+            sl=sl.next;
+            ft=ft.next.next;
+        }
+        Node tmp=sl;
+        Node rsl=rev(sl);
+        while(rsl!=null)
+        {
+            if(head.data != rsl.data)
+            {
+                return false;
+            }
+            head=head.next;
+            rsl=rsl.next;
+        }
+        return true;
+    }
+}
