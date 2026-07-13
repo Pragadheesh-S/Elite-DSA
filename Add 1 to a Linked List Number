@@ -1,0 +1,48 @@
+/* Structure of linked list Node
+class Node{
+    int data;
+    Node next;
+
+    Node(int x){
+        data = x;
+        next = null;
+    }
+}
+*/
+class Solution {
+    private Node rev(Node head)
+    {
+        Node prevNode = null, nxtNode = null, temp = head;
+        while (temp != null) {
+            nxtNode = temp.next;
+            temp.next = prevNode;
+            prevNode = temp;
+            temp = nxtNode;
+        }
+        
+        return prevNode;
+    } 
+    
+    public Node addOne(Node head) {
+        // code here.
+        head=rev(head);
+        Node tmp=head;
+        
+        int c=1;
+        while(tmp!=null)
+        {
+          int sum=tmp.data+c;
+          tmp.data=sum%10;
+          c=sum/10;
+           
+           if(tmp.next==null && c > 0)
+           {
+              tmp.next=new Node(c);
+              c=0;
+           }
+           tmp=tmp.next;
+        }
+        head=rev(head);
+        return head;
+        }
+}
