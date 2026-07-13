@@ -1,0 +1,60 @@
+/*
+class Node {
+	int data;
+	Node next;
+	
+	Node(int d) {
+		data = d;
+		next = null;
+	}
+}
+*/
+
+class Solution {
+	private Node rev(Node head)
+	{
+		Node prevNode = null, nxtNode = null, temp = head;
+		while (temp != null) {
+			nxtNode = temp.next;
+			temp.next = prevNode;
+			prevNode = temp;
+			temp = nxtNode;
+		}
+		
+		return prevNode;
+	}
+	public Node addTwoLists(Node head1, Node head2) {
+		// code here
+		Node h1 = rev(head1);
+		Node h2 = rev(head2);
+		Node dummy = new Node(0);
+		Node curr = dummy;
+		int c = 0;
+		while (h1 != null || h2 != null || c>0)
+			{
+			int sum = c;
+			
+			if (h1 != null) {
+				sum += h1.data;
+				h1 = h1.next;
+			}
+			
+			if (h2 != null) {
+				sum += h2.data;
+				h2 = h2.next;
+			}
+			
+			curr.next = new Node(sum % 10);
+			c = sum / 10;
+			curr = curr.next;
+		}
+		
+	 Node result = rev(dummy.next);
+
+        while (result != null && result.data == 0) {
+            result = result.next;
+        }
+        return (result == null) ? new Node(0) : result;
+		
+	}
+}
