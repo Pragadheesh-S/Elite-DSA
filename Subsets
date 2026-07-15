@@ -1,0 +1,24 @@
+class Solution {
+    private void gen(int[] arr,int n,ArrayList<ArrayList<Integer>> res,ArrayList<Integer> al,int i)
+    {
+        if(i>=n)
+        {
+            res.add(new ArrayList<>(al));
+            return;
+        }
+        al.add(arr[i]);
+        gen(arr,n,res,al,i+1);
+        al.remove(al.size()-1);
+        gen(arr,n,res,al,i+1);
+    
+    }
+    public ArrayList<ArrayList<Integer>> subsets(int arr[]) {
+        // code here
+        int n=arr.length;
+        Arrays.sort(arr);
+        ArrayList<ArrayList<Integer>> res=new ArrayList<>();
+        ArrayList<Integer> al=new ArrayList<>();
+        gen(arr,n,res,al,0);
+        return res;
+    }
+}
