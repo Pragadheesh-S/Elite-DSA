@@ -1,0 +1,41 @@
+class Solution {
+	static int mc;
+	private static boolean ispal(String s, int l, int r)
+	{
+		while (l <= r)
+			{
+			if (s.charAt((l)) != s.charAt(r)) {
+				return false;
+				
+			}
+			l++;
+			r--;
+		}
+		return true;
+	}
+	private static void gen(String s, int si, ArrayList<String> al)
+	{
+	    if (al.size() >= mc) return;
+		if (si >= s.length())
+			{
+			mc = Math.min(mc, al.size());
+			return;
+		}
+		for (int i = si; i<s.length(); i++)
+			{
+			if (ispal(s, si, i)) {
+				    al.add(s.substring(si, i + 1));
+					gen(s, i + 1, al);
+					al.remove(al.size() - 1);
+				
+			}
+		}
+	}
+		static int palPartition(String s) {
+			// code here
+			mc = Integer.MAX_VALUE;
+			gen(s, 0, new ArrayList<String>());
+			return mc - 1;
+			
+		}
+	}
