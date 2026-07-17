@@ -1,0 +1,47 @@
+class Solution {
+	
+	private void sol(String s, int t, ArrayList<String> al,
+	long val, long prev, String str, int i) {
+		
+		if (i == s.length()) {
+			if (val == t) {
+				al.add(str);
+			}
+			return;
+		}
+		
+		long num = 0;
+		
+		for (int j = i; j < s.length(); j++) {
+			
+			if (j > i && s.charAt(i) == '0')
+				break;
+			
+			num = num * 10 + (s.charAt(j) - '0');
+			
+			if (i == 0) {
+				// first number (no operator before it)
+				sol(s, t, al, num, num, "" + num, j + 1);
+			} else {
+				
+				sol(s, t, al, val + num, num,
+				str + "+" + num, j + 1);
+				
+				sol(s, t, al, val - num, -num,
+				str + "-" + num, j + 1);
+				
+				sol(s, t, al,
+				val - prev + prev * num,
+				prev * num,
+				str + "*" + num,
+				j + 1);
+			}
+		}
+	}
+	
+	public ArrayList<String> findExpr(String s, int target) {
+		ArrayList<String> al = new ArrayList<>();
+		sol(s, target, al, 0, 0, "", 0);
+		return al;
+	}
+}
