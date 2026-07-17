@@ -1,0 +1,38 @@
+class Solution {
+	private void rec(int n, int r, ArrayList<ArrayList<Integer>> res, ArrayList<Integer> al,boolean[] rf,boolean[] cf,boolean[] d1f,boolean[] d2f)
+	{
+	    if(r==n)
+	    {
+	        res.add(new ArrayList<>(al));
+	        return;
+	    }
+		for (int c = 0; c<n; c++)
+			{
+			if (rf[r] || cf[c] || d1f[r + c] || d2f[n-1-r+c])
+				continue;
+			al.add(c + 1);
+			rf[r] = true;
+			cf[c] = true;
+			d1f[r + c] = true;
+			d2f[n-1-r+c] = true;
+			rec(n, r + 1, res, al,rf,cf,d1f,d2f);
+			al.remove(al.size() - 1);
+			rf[r] = false;
+			cf[c] = false;
+			d1f[r + c] = false;
+			d2f[n-1-r+c] = false;
+			
+		}
+		
+	}
+	public ArrayList<ArrayList<Integer>> nQueen(int n) {
+		// code here
+		ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+		boolean[] rf = new boolean[n];
+		boolean[] cf = new boolean[n];
+		boolean[] d1f = new boolean[n + n - 1];
+		boolean[] d2f = new boolean[n + n - 1];
+		rec(n, 0, res, new ArrayList<>(),rf,cf,d1f,d2f);
+		return res;
+	}
+}
