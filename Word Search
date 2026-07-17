@@ -1,0 +1,49 @@
+class Solution {
+	static int[] d = {1, 0, -1, 0, 1};
+	private boolean dfs(char[][] mat, int r, int c, int R, int C, String s, int si, boolean[][] vis)
+	{
+		
+		if (si >= s.length())
+			{
+			return true;
+		}
+		for (int i = 0; i<4; i++)
+			{
+			int nr = r + d[i];
+			int nc = c + d[i + 1];
+			if (nr<R && nr >= 0 && nc<C && nc >= 0 && mat[nr][nc] == s.charAt(si) && vis[nr][nc] != true)
+				{
+				vis[nr][nc] = true;
+				if (dfs(mat, nr, nc, R, C, s, si + 1, vis))
+					{
+					return true;
+				}
+				vis[nr][nc] = false;
+			}
+		}
+		return false;
+	}
+	public boolean isWordExist(char[][] mat, String s) {
+		// Code here
+		int r = mat.length;
+		int c = mat[0].length;
+		int si = 0;
+		
+		for (int i = 0; i<r; i++)
+			{
+			for (int j = 0; j<c; j++)
+				{
+				if (mat[i][j] == s.charAt(si))
+					{
+					boolean[][] vis = new boolean[r][c];
+					vis[i][j] = true;
+					if (dfs(mat, i, j, r, c, s, si + 1, vis))
+						{
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+}
