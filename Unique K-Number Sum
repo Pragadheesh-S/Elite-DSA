@@ -1,0 +1,26 @@
+class Solution {
+    private void gen(int v,int n,int k,ArrayList<ArrayList<Integer>>res,ArrayList<Integer> al,int s)
+    {
+         if(al.size()==k && s==n )
+        {
+            res.add(new ArrayList<>(al));
+            return;
+        }
+        if(al.size()>k || s>n || v>9 )
+        {
+            return;
+        }
+       
+         al.add(v);
+         gen(v+1,n,k,res,al,s+v);
+         al.remove(al.size()-1);
+         gen(v+1,n,k,res,al,s);
+        
+    }
+    public ArrayList<ArrayList<Integer>> combinationSum(int n, int k) {
+        // code here
+        ArrayList<ArrayList<Integer>> res=new ArrayList<>();
+        gen(1,n,k,res,new ArrayList<>(),0);
+        return res;
+    }
+}
