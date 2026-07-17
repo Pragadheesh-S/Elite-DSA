@@ -1,0 +1,36 @@
+class Solution {
+    private boolean isval(String[] sa,String s)
+    {
+        for(String t:sa)
+        {
+            if(s.equals(t)) return true;
+        }
+        return false;
+    }
+    private boolean rec(String s,String[] sa,int si)
+    {
+        if(si>=s.length())
+        {
+            return true;
+        }
+        for(int i=si;i<s.length();i++)
+        {
+            if(isval(sa,s.substring(si,i+1)))
+            {
+                if(rec(s,sa,i+1))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public boolean wordBreak(String s, String[] dict) {
+        // code here
+       if(rec(s,dict,0))
+       {
+           return true;
+       }
+       return false;
+    }
+}
