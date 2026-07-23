@@ -1,0 +1,26 @@
+class Solution {
+    double power(double x, int e) {
+        // code here
+        long v=e;
+        if(v<0)
+        {
+            x=1/x;
+            v*=-1;
+        }
+        double ans=1;
+        while(v>0)
+        {
+            if(v%2==0)
+            {
+                x*=x;
+                v/=2;
+            }
+            else
+            {
+                ans*=x;
+                v-=1;
+            }
+        }
+        return ans;
+    }
+}
