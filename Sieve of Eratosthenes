@@ -1,0 +1,20 @@
+class Solution {
+    public ArrayList<Integer> sieve(int n) {
+        // code here
+        int[] arr=new int[n+1];
+        Arrays.fill(arr,1);
+        ArrayList<Integer> al=new ArrayList<>();
+        for(int i=2;i<=n;i++)
+        {
+            if(arr[i]==1)
+            {
+            al.add(i);
+            for(int j=2;(i*j)<=n;j++)
+            {
+                arr[i*j]=0;
+            }
+            }
+        }
+        return al;
+    }
+}
