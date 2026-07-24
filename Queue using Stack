@@ -1,0 +1,39 @@
+class myQueue {
+
+    // Initialize your data members
+    Stack<Integer>st=new Stack<>();
+    Stack<Integer>pt=new Stack<>();
+    
+
+    void enqueue(int x) {
+        // Implement enqueue operation
+        while(!st.isEmpty())
+        {
+            pt.push(st.pop());
+        }
+        st.push(x);
+        while(!pt.isEmpty())
+        {
+            st.push(pt.pop());
+        }
+    }
+
+    void dequeue() {
+        // Implement dequeue operation
+         if(!st.isEmpty())st.pop();
+    }
+
+    int front() {
+        // Implement front operation
+        if(!st.isEmpty())
+        {
+            return st.peek();
+        }
+        return -1;
+    }
+
+    int size() {
+        // Implement size operation
+        return st.size();
+    }
+}
